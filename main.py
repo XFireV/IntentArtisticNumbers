@@ -30,14 +30,21 @@ while True:
     print()
     FR = len(F)
     PE = ['_'] * FR
+    LU = set()
     for i in range(20):
         print(' '.join(PE))
-        L = input('digite 1 letra: ')
-        while len(L) > 1:
-            L = input('Por favor, digite apenas 1 letra')
+        L = input('digite 1 letra: ').lower()
+        while len(L) > 1 or L in LU:
+            if len(L) > 1:
+                L = input('Por favor, digite apenas 1 letra: ')
+            else:
+                L = input('Você já usou essa letra. Digite outra: ')
+        LU.add(L)
+        if L == '!':
+            print('\n'f'a dica é {F}')
         acertou = False
         for i in range(FR):
-            if F[i].lower() == L.lower():
+            if F[i].lower() == L:
                 PE[i] = F[i]
                 acertou = True
         if not acertou:
@@ -45,15 +52,7 @@ while True:
         if T > 10:
             print('Você perdeu')
             break
-        if T == 1:
-            print('''
-                    ___''')
-        elif T == 2:
-            print(''' 
-                      |
-                      |
-                      |
-                      |___|''')
+
         if F == ''.join(PE):
             print(f'Parabéns, você adivinhou!!! a palavra era {F}')
             break
