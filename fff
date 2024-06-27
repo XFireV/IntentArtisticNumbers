@@ -1,5 +1,0 @@
-import time
-
-print("Esta é uma linha que será apagada", end='\r')
-time.sleep(2)  # Aguarda 2 segundos
-print("Esta é a nova linha de texto      ")
